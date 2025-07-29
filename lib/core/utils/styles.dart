@@ -1,4 +1,4 @@
-import 'package:bookly/constants.dart';
+import 'package:bookly/core/utils/constants.dart';
 import 'package:flutter/material.dart' show TextStyle, FontWeight;
 
 class Styles {
