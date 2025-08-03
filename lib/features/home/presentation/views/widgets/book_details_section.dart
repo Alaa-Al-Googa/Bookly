@@ -1,11 +1,14 @@
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/features/home/data/models/book_model/book_model.dart';
 import 'package:bookly/features/home/presentation/views/widgets/book_rating.dart';
 import 'package:bookly/features/home/presentation/views/widgets/books_action.dart';
 import 'package:bookly/features/home/presentation/views/widgets/custom_book_image.dart';
 import 'package:flutter/material.dart';
 
 class BookDetailsSection extends StatelessWidget {
-  const BookDetailsSection({super.key});
+  const BookDetailsSection({super.key, required this.bookModel});
+
+  final BookModel bookModel;
 
   @override
   Widget build(BuildContext context) {
@@ -15,18 +18,21 @@ class BookDetailsSection extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width * .17),
-          child: CustomBookImage(),
+          child: CustomBookImage(
+            imageUrl: bookModel.volumeInfo.imageLinks?.thumbnail ?? '',
+          ),
         ),
         SizedBox(height: 43),
         Text(
-          'The Jungel Book',
+          bookModel.volumeInfo.title!,
           style: Styles.TextStyle30.copyWith(fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center,
         ),
         SizedBox(height: 6),
         Opacity(
           opacity: .7,
           child: Text(
-            'Rudyard Kipling',
+            bookModel.volumeInfo.authors?[0] ?? '',
             style: Styles.TextStyle18.copyWith(
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w500,
@@ -34,9 +40,15 @@ class BookDetailsSection extends StatelessWidget {
           ),
         ),
         SizedBox(height: 18),
-        BookRating(mainAxisAlignment: MainAxisAlignment.center),
+        BookRating(
+          rating: 10,
+          count: 10,
+          //rating: bookModel.volumeInfo.averageRating??0,
+          //count: bookModel.volumeInfo.ratingsCount??0,
+          mainAxisAlignment: MainAxisAlignment.center,
+        ),
         SizedBox(height: 37),
-        BooksAction(),
+        BooksAction(bookModel: bookModel),
       ],
     );
   }

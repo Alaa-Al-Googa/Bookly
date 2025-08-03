@@ -1,3 +1,4 @@
+import 'package:bookly/features/home/data/models/book_model/image_links.dart';
 import 'package:equatable/equatable.dart';
 
 class PanelizationSummary extends Equatable {
@@ -9,7 +10,10 @@ class PanelizationSummary extends Equatable {
     this.containsImageBubbles,
   });
 
-  factory PanelizationSummary.fromJson(Map<String, dynamic> json) {
+  factory PanelizationSummary.fromJson(
+    Map<String, dynamic> json, {
+    ImageLinks? imageLinks,
+  }) {
     return PanelizationSummary(
       containsEpubBubbles: json['containsEpubBubbles'] as bool?,
       containsImageBubbles: json['containsImageBubbles'] as bool?,
