@@ -57,7 +57,10 @@ class BookListViewItem extends StatelessWidget {
                   ),
                   const SizedBox(height: 3),
                   Text(
-                    bookModel.volumeInfo.authors![0],
+                    bookModel.volumeInfo.authors != null &&
+                            bookModel.volumeInfo.authors!.isNotEmpty
+                        ? bookModel.volumeInfo.authors!.first
+                        : 'Unknown Author',
                     style: Styles.TextStyle14,
                   ),
                   const SizedBox(height: 3),

@@ -1,18 +1,21 @@
+import 'package:bookly/features/home/data/models/book_model/book_model.dart';
 import 'package:bookly/features/home/presentation/views/widgets/book_list_view_item.dart';
 import 'package:flutter/material.dart';
 
 class SearchResultListView extends StatelessWidget {
-  const SearchResultListView({super.key});
+  final List<BookModel> books;
+
+  const SearchResultListView({super.key, required this.books});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: EdgeInsets.zero,
-      itemCount: 10,
+      itemCount: books.length,
       itemBuilder: (context, index) {
         return Padding(
           padding: EdgeInsets.symmetric(vertical: 10),
-          child: Text('alaa'), //BookListViewItem(),
+          child: BookListViewItem(bookModel: books[index]),
         );
       },
     );
